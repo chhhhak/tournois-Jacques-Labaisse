@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 
-# Create your views here.
+from .models import Tournoi
+
+def tournois(request):
+    tournament_list = get_list_or_404(Tournoi)
+    return render(request, 'tournament/tournois.html', {'tournois': tournois})
