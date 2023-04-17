@@ -13,3 +13,21 @@ class Tournoi(models.Model):
 
     def __str__(self):
         return self.name 
+
+class Equipe(models.Model):
+    name = models.CharField(max_length=200)
+    trainer = models.CharField(max_length=200)
+    players = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.name
+
+class Poule(models.Model):
+    tournament = models.ForeignKey(Tournoi, on_delete=models.CASCADE)
+    poolId = models.IntegerField(default=0)
+    teams = models.ManyToManyField(Equipe)
+
+    def __str__(self):
+        return self.teams.__str__()
+    
+
