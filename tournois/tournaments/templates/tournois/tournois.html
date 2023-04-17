@@ -1,0 +1,9 @@
+{% if tournament_list %}
+    <ul>
+    {% for tournois in tournament_list %}
+    <li>{{ tournois.name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Pas de tournoi disponible.</p>
+{% endif %}

@@ -4,4 +4,4 @@ from .models import Tournoi
 
 def tournois(request):
     tournament_list = get_list_or_404(Tournoi)
-    return render(request, 'tournament/tournois.html', {'tournois': tournois})
+    return render(request, 'tournois/tournois.html', {'tournament_list': tournament_list})
