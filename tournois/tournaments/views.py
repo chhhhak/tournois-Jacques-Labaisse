@@ -5,3 +5,7 @@ from .models import Tournoi
 def tournois(request):
     tournament_list = get_list_or_404(Tournoi)
     return render(request, 'tournois/tournois.html', {'tournament_list': tournament_list})
+
+def tournoi(request, id_tournoi):
+    tournament = get_object_or_404(Tournoi, pk=id_tournoi)
+    return render(request, 'tournois/tournoi.html', {'tournament': tournament})
