@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 
-from .models import Tournoi
+from .models import Poule, Tournoi
+
+def poule(request):
+    poule = get_object_or_404(Poule)
+    return render(request, 'tournois/poule.html', {'poule', poule})
 
 def tournois(request):
     tournament_list = get_list_or_404(Tournoi)

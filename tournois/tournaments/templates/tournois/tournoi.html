@@ -1,0 +1,18 @@
+{% if tournament %}
+    <h1>{{tournament.name}}</h1>
+
+    <p>Début : {{tournament.beg_date}}</p>
+    <p>Fin : {{tournament.end_date}}</p>
+    <p>{{tournament.location}}</p>
+
+    <ul>
+    {% for poule in tournament.poule_set.all %}
+        <li>Poule {{ poule.id }}</li>
+    {% endfor %}
+    </ul>
+
+
+    
+{% else %}
+    <p>Ce tournoi n'éxiste pas.</p>
+{% endif %}
