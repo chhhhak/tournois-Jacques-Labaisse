@@ -1,4 +1,6 @@
 {% if pool %}
+
+
     <h1>{{pool.tournament.name}}</h1>
     <h2>Poule {{pool.id}}</h2>
     <h3>Équipes :</h3>
@@ -8,10 +10,36 @@
     {% endfor %}
     </ul>
 
-    <!-- this section is used to test the computation of points after a match  -->
+    <h3>Classement</h3>
+    <table class='sortable'>
+        <thead>
+            <tr>
+            <th>Équipe</th>
+            <th>Points</th>
+            <th>BP</th>
+            <th>BC</th>
+            <th>Diff</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for team in pool.teams.all %}
+        <tr>
+            <td>{{team.name}}</td>
+            <td>{{team.compute_points}}</td>
+            <td>{{team.compute_scored_goals}}</td>
+            <td>{{team.compute_conceded_goals}}</td>
+            <td>{{team.goal_diff}}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <h3>Résultats</h3>
     <ul>
     {% for match in pool.match_set.all %}
-        <li>{{match}} {{match.test_match_to_points}}</li>
+        <li>{{match}}</li>
     {% endfor %}
     </ul>
 

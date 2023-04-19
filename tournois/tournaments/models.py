@@ -21,6 +21,40 @@ class Equipe(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def compute_points(self):
+        totalPoints = 0
+        for match in self.team1.all():
+            totalPoints += match.test_match_to_points()[0]
+        for match in self.team2.all():
+            totalPoints += match.test_match_to_points()[1]
+
+        return totalPoints
+
+    def compute_scored_goals(self):
+        scored_goals = 0
+        for match in self.team1.all():
+            if match.goals1 is not None:
+                scored_goals += match.goals1
+        for match in self.team2.all():
+            if match.goals2 is not None:
+                scored_goals += match.goals2
+        return scored_goals
+
+    def compute_conceded_goals(self):
+        conceded_goals = 0
+        for match in self.team1.all():
+            if match.goals2 is not None:
+                conceded_goals += match.goals2
+        for match in self.team2.all():
+            if match.goals1 is not None:
+                conceded_goals += match.goals1
+        return conceded_goals
+    
+    def goal_diff(self):
+        return self.compute_scored_goals() - self.compute_conceded_goals()
+
+
 
 class Poule(models.Model):
     tournament = models.ForeignKey(Tournoi, on_delete=models.CASCADE)
@@ -30,6 +64,8 @@ class Poule(models.Model):
     def __str__(self):
         return self.teams.__str__()
     
+    
+
     
 
     
@@ -51,7 +87,10 @@ class Match(models.Model):
     pool = models.ForeignKey(Poule, on_delete=models.CASCADE)
 
     def __str__(self):
-        strRep = '{} {}-{} {}'.format(self.team1.name, self.goals1, self.goals2, self.team2.name)
+        if self.goals1 == None:
+            strRep = '{} - {}'.format(self.team1.name, self.team2.name)
+        else:
+            strRep = '{} {}-{} {}'.format(self.team1.name, self.goals1, self.goals2, self.team2.name)
         return strRep
 
     """

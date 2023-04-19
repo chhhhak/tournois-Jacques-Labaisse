@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 
-from .models import Poule, Tournoi
+from .models import Equipe, Poule, Tournoi
 
 def poule(request, id_poule):
     pool = get_object_or_404(Poule, pk=id_poule)
+    # pool = sorted(pool.teams.all(), key = lambda team: team.compute_points(), reverse=True)
+    # pool = pool.teams.all().order_by('compute_points')
     return render(request, 'tournois/poule.html', {'pool': pool})
 
 def tournois(request):
