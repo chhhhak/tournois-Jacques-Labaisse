@@ -31,3 +31,16 @@ class Poule(models.Model):
         return self.teams.__str__()
     
 
+class Match(models.Model):
+    date = models.DateTimeField()
+    location = models.CharField(max_length=200)
+    team1 = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    team2 = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    goals1 = models.IntegerField(default=0)
+    goals2 = models.IntegerField(default=0)
+    pool = models.ForeignKey(Poule, on_delete=models.CASCADE)
+
+    def __str__(self):
+        strRep = '{} {}-{} {}'.format(self.team1.name, self.goal1, self.goal2, self.team2.name)
+        return strRep
+    
