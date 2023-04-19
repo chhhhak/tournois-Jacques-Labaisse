@@ -1,0 +1,15 @@
+{% if pool %}
+    <h1>{{pool.tournament.name}}</h1>
+    <h2>Poule {{pool.id}}</h2>
+    <h3>Équipes :</h3>
+    <ul>
+    {% for team in pool.teams.all %}
+        <li> {{ team.name }}</li>
+    {% endfor %}
+    </ul>
+
+
+    
+{% else %}
+    <p>Cette poule n'éxiste pas.</p>
+{% endif %}
