@@ -63,6 +63,21 @@ class Poule(models.Model):
 
     def __str__(self):
         return self.teams.__str__()
+
+    def generate_matches(self):
+        for team_1 in self.teams.all():
+            for team_2 in self.teams.all():
+                if team_1.id > team_2.id:
+                    match = Match(date=self.tournament.beg_date, location=self.tournament.location, team1=team_1, team2=team_2, pool=self)
+                    match.save()
+
+    """
+      This method removes all the matches from this pool
+      Useful when generate_matches is called too many times
+    """
+    def clean_matches(self):
+        for match in self.match_set.all():
+            match.delete()
     
     
 
