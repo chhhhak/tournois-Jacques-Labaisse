@@ -2,8 +2,8 @@ from django.shortcuts import render, get_list_or_404, get_object_or_404
 
 from .models import Poule, Tournoi
 
-def poule(request):
-    poule = get_object_or_404(Poule)
+def poule(request, id_poule):
+    poule = get_object_or_404(Poule, pk=id_poule)
     return render(request, 'tournois/poule.html', {'poule', poule})
 
 def tournois(request):
