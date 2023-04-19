@@ -8,6 +8,15 @@
     {% endfor %}
     </ul>
 
+    <!-- this section is used to test the computation of points after a match  -->
+    <ul>
+    {% for match in pool.match_set.all %}
+        <li>{{match}} {{match.test_match_to_points}}</li>
+    {% endfor %}
+    </ul>
+
+    
+
 
     
 {% else %}

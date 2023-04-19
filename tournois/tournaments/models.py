@@ -30,17 +30,48 @@ class Poule(models.Model):
     def __str__(self):
         return self.teams.__str__()
     
+    
+
+    
+
+
+"""
+    établir les matchs : déclencher la fonction manuellement sur la 
+    page de la pool, boutton disponible uniquement pour l'admin
+
+"""    
 
 class Match(models.Model):
     date = models.DateTimeField()
     location = models.CharField(max_length=200)
-    team1 = models.ForeignKey(Equipe, on_delete=models.CASCADE)
-    team2 = models.ForeignKey(Equipe, on_delete=models.CASCADE)
-    goals1 = models.IntegerField(default=0)
-    goals2 = models.IntegerField(default=0)
+    team1 = models.ForeignKey(Equipe, related_name="team1", on_delete=models.CASCADE)
+    team2 = models.ForeignKey(Equipe, related_name="team2", on_delete=models.CASCADE)
+    goals1 = models.IntegerField(null=True, blank=True)
+    goals2 = models.IntegerField(null=True, blank=True)
     pool = models.ForeignKey(Poule, on_delete=models.CASCADE)
 
     def __str__(self):
-        strRep = '{} {}-{} {}'.format(self.team1.name, self.goal1, self.goal2, self.team2.name)
+        strRep = '{} {}-{} {}'.format(self.team1.name, self.goals1, self.goals2, self.team2.name)
         return strRep
+
+    """
+        This method computes the points to attribute to the teams
+        participating in a match regarding the score.
+    """
+    def test_match_to_points(match):
+        winner_points = 3 
+        loser_points = 0
+        draw_points = 1
+
+        if (match.goals1 == None or match.goals2 == None):
+                return 0, 0
+
+        if match.goals1 > match.goals2:
+            return winner_points, loser_points
+        
+        if match.goals1 < match.goals2:
+            return loser_points, winner_points
+        
+        else:
+            return draw_points, draw_points
     
