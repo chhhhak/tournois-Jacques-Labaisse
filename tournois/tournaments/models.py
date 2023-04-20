@@ -128,4 +128,10 @@ class Match(models.Model):
         
         else:
             return draw_points, draw_points
-    
+
+class Commentaire(models.Model):
+    author = models.CharField(max_length=200)
+    match = models.ForeignKey(Match, on_delete=models.CASCADE)
+    date = models.DateField("Posted on", default=timezone.now)
+    text = models.CharField(max_length=500)
+     
