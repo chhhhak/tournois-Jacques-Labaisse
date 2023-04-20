@@ -39,7 +39,7 @@
     <h3>Résultats</h3>
     <ul>
     {% for match in pool.match_set.all %}
-        <li><a href="{% url 'tournaments:match' match.id %}">{{match}}</li>
+        <li><a href="{% url 'tournaments:match' match.id %}">{{match}}</a></li>
     {% endfor %}
     </ul>
 

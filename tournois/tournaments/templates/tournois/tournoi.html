@@ -7,7 +7,7 @@
 
     <ul>
     {% for poule in tournament.poule_set.all %}
-        <li> <a href="{% url 'tournaments:poule' poule.id %}"> Poule {{ poule.id }}</li>
+        <li> <a href="{% url 'tournaments:poule' poule.id %}"> Poule {{ poule.id }}</a></li>
     {% endfor %}
     </ul>
 
