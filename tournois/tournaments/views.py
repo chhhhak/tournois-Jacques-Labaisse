@@ -8,19 +8,19 @@ def poule(request, id_poule):
     pool = get_object_or_404(Poule, pk=id_poule)
     # pool = sorted(pool.teams.all(), key = lambda team: team.compute_points(), reverse=True)
     # pool = pool.teams.all().order_by('compute_points')
-    return render(request, 'tournois/poule.html', {'pool': pool})
+    return render(request, 'tournaments/poule.html', {'pool': pool})
 
 def tournois(request):
     tournament_list = get_list_or_404(Tournoi)
-    return render(request, 'tournois/tournois.html', {'tournament_list': tournament_list})
+    return render(request, 'tournaments/tournois.html', {'tournament_list': tournament_list})
 
 def tournoi(request, id_tournoi):
     tournament = get_object_or_404(Tournoi, pk=id_tournoi)
-    return render(request, 'tournois/tournoi.html', {'tournament': tournament})
+    return render(request, 'tournaments/tournoi.html', {'tournament': tournament})
 
 def match(request, id_match):
     match = get_object_or_404(Match, pk=id_match)
-    return render(request, 'tournois/match.html', {'match': match} )
+    return render(request, 'tournaments/match.html', {'match': match} )
 
 
 def commentaire(request, id_match):
@@ -36,11 +36,11 @@ def commentaire(request, id_match):
             comment_obj.date = timezone.now()
             comment_obj.match = match
             comment_obj.save()
-            return render(request, 'tournois/match.html', {'match':match, "comment_form":CommentForm(initial={"author": user.username, "match":match, "date": timezone.now(), "text": ""})})
+            return render(request, 'tournaments/match.html', {'match':match, "comment_form":CommentForm(initial={"author": user.username, "match":match, "date": timezone.now(), "text": ""})})
         
         else:
             print(comment_form.errors.as_data())
-            return render(request, 'tournois/comment_form.html', {'match':match} )   
+            return render(request, 'tournaments/comment_form.html', {'match':match} )   
 
     else:
         print("get")
@@ -50,8 +50,8 @@ def commentaire(request, id_match):
         print(comment_form.errors)
         print(comment_form.is_bound)
         print(comment_form.is_valid())
-        return render(request, 'tournois/comment_form.html', {"match":match, "comment_form":comment_form} )   
+        return render(request, 'tournaments/comment_form.html', {"match":match, "comment_form":comment_form} )   
 
 def home(request):
     
-    return render(request, 'tournois/home.html',)
+    return render(request, 'tournaments/home.html',)

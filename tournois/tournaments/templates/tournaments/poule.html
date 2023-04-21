@@ -1,3 +1,7 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'tournaments/style.css' %}">
+
+
 {% if pool %}
 
 
@@ -24,12 +28,12 @@
         <tbody>
 
         {% for team in pool.teams.all %}
-        <tr>
+        <tr >
             <td>{{team.name}}</td>
-            <td>{{team.compute_points}}</td>
-            <td>{{team.compute_scored_goals}}</td>
-            <td>{{team.compute_conceded_goals}}</td>
-            <td>{{team.goal_diff}}</td>
+            <td style="text-align:center">{{team.compute_points}}</td>
+            <td style="text-align:center">{{team.compute_scored_goals}}</td>
+            <td style="text-align:center">{{team.compute_conceded_goals}}</td>
+            <td style="text-align:center">{{team.goal_diff}}</td>
         </tr>
         {% endfor %}
 
