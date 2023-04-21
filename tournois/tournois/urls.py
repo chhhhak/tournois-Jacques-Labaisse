@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from tournaments.views import home
+
 urlpatterns = [
+    path('', home, name='home'),
     path('', include('tournaments.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),

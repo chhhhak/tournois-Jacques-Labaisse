@@ -51,3 +51,7 @@ def commentaire(request, id_match):
         print(comment_form.is_bound)
         print(comment_form.is_valid())
         return render(request, 'tournois/comment_form.html', {"match":match, "comment_form":comment_form} )   
+
+def home(request):
+    
+    return render(request, 'tournois/home.html',)
