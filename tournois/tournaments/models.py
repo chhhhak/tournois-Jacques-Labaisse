@@ -134,4 +134,9 @@ class Commentaire(models.Model):
     match = models.ForeignKey(Match, on_delete=models.CASCADE)
     date = models.DateField("Posted on", default=timezone.now)
     text = models.CharField(max_length=500)
+
+    class Meta:
+        ordering = ['date']
      
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.text, self.author)

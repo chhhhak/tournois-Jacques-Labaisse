@@ -1,0 +1,27 @@
+{% if match %}
+    {% if user.is_authenticated %}
+        <h2> Laissez un commentaire </h2>
+        <form action="{% url 'tournaments:commentaire' match.id %}" method="post" class="mb-6">
+            {% csrf_token %}
+            
+            <div>
+                {height:200px; font-size:14pt;}
+                {{comment_form.text}}
+            
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+
+        {{ comment_form.errors }} 
+        {{ comment_form.non_field_errors }}
+    {% else %}
+        <p><a href="{% url 'login' %}">Connectez vous</a> pour pouvoir commenter</p>
+    {% endif %}
+        
+
+{% else %}
+
+    <p> Match introuvable </p>
+    <p> <a href="{% url 'tournaments:tournois' %}">Revenir à la page d'accueil</a></p>
+
+{% endif %}

@@ -5,7 +5,16 @@
     <p>Lieu: {{match.location}}</p>
     <p>Date: {{match.date}}</p>
 
-    <p>Comments</p>
+    <p>Commentaires</p>
+
+
+
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'tournaments:commentaire' match.id %}">Cliquez ici pour commenter</a></p>
+    
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a> to comment</p>
+    {% endif %}
 
 {% else %}
     Ce match n'éxiste pas.
