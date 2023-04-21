@@ -1,6 +1,16 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'tournaments/style.css' %}">
 
+<span style="position: absolute; top: 0px; left:0px;">
+    <IMG SRC="{% static 'tournaments/stade1.jpg' %}" >
+</SPAN>
+<span style="position: absolute; top: 0px; right:0px;" width="200px" height="150px">
+    <IMG SRC="{% static 'tournaments/stade2.jpg' %}" width="200px" height="150px">
+</SPAN>
 
-<h1>Bienvenue sur Footacagoule</h1>
-<p>Le site du football amateur régional</p>
+
+
+<center>
+    <h1>Bienvenue sur Footacagoule</h1>
+    <p href="{% url 'tournaments:tournois' %}">Le site du football amateur régional</p>
+</center>
